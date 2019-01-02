@@ -80,49 +80,38 @@ def edit():
     db.session.commit()
     return jsonify(resp)
 
-@route_user.route( "/reset-pwd",methods = [ "GET","POST" ] )
+@route_user.route( "/reset_pwd",methods = [ "GET","POST" ] )
 def resetPwd():
     if request.method == "GET":
-        return ops_render( "user/reset_pwd.html",{ 'current':'reset-pwd' } )
-
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+        return ops_render('user/reset_pwd.html',{'current':'reset_pwd'})
+    resp = {'code':200,'msg':"操作成功",'data':{}}
     req = request.values
-
+    app.logger.info(req)
     old_password = req['old_password'] if 'old_password' in req else ''
     new_password = req['new_password'] if 'new_password' in req else ''
-
-    if old_password is None or len( old_password ) < 6:
+    if old_password is None or len(old_password)<6:
         resp['code'] = -1
-        resp['msg'] = "请输入符合规范的原密码~~"
+        resp['msg'] = "请输入正确的原密码~~"
         return jsonify(resp)
-
-    if new_password is None or len( new_password ) < 6:
+    if new_password is None or len(new_password) < 6:
         resp['code'] = -1
-        resp['msg'] = "请输入符合规范的新密码~~"
+        resp['msg'] = "请输入正确的新密码~~"
         return jsonify(resp)
 
     if old_password == new_password:
         resp['code'] = -1
-        resp['msg'] = "请重新输入一个吧，新密码和原密码不能相同哦~~"
+        resp['msg'] = "密码与原密码一致~~"
         return jsonify(resp)
 
     user_info = g.current_user
-
-    if user_info.uid == 1:
-        resp['code'] = -1
-        resp['msg'] = "该用户是演示账号，不准修改密码和登录用户名~~"
-        return jsonify(resp)
-
-    user_info.login_pwd = UserService.genePwd( new_password,user_info.login_salt )
-
-    db.session.add( user_info )
+    user_info.login_pwd = UserService.genePwd(new_password,user_info.login_salt)
+    db.session.add(user_info)
     db.session.commit()
-
-    response = make_response(json.dumps( resp ))
+    #重置cookie
+    response = make_response(json.dumps(resp))
     response.set_cookie(app.config['AUTH_COOKIE_NAME'], '%s#%s' % (
         UserService.geneAuthCode(user_info), user_info.uid), 60 * 60 * 24 * 120)  # 保存120天
     return response
-
 
 @route_user.route( "/logout" )
 def logout():

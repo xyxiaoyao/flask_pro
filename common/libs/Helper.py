@@ -56,8 +56,6 @@ def iPagination( params ):
 '''
 def ops_render( template,context = {} ):
     before_request()
-    print(222222222222222)
-    print(g)
     if 'current_user' in g:
         context['current_user'] = g.current_user
     return render_template( template,**context )

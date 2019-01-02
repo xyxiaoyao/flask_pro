@@ -33,7 +33,7 @@ var mod_pwd_ops = {
             };
 
             $.ajax({
-                url:common_ops.buildUrl( "/user/reset-pwd" ),
+                url:common_ops.buildUrl( "/user/reset_pwd" ),
                 type:'POST',
                 data:data,
                 dataType:'json',

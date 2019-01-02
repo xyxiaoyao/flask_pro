@@ -4,10 +4,10 @@ from application import app
 '''
 统一拦截处理和统一错误处理
 '''
+from web.interceptors.AuthInterceptor import  *
+# from web.interceptors.ApiAuthInterceptor import  *
+from web.interceptors.ErrorInterceptor import  *
 
-'''
-蓝图功能，对所有的url进行蓝图功能配置
-'''
 '''
 蓝图功能，对所有的url进行蓝图功能配置
 '''
@@ -34,5 +34,3 @@ app.register_blueprint( route_stat,url_prefix = "/stat" )
 # app.register_blueprint( route_api,url_prefix = "/api" )
 # app.register_blueprint( route_upload,url_prefix = "/upload" )
 # app.register_blueprint( route_chart,url_prefix = "/chart" )
-
-
