@@ -7,13 +7,15 @@ class Application( Flask ):
     def __init__(self,import_name , template_folder = None):
         super( Application,self ).__init__( import_name ,template_folder = template_folder,static_folder = None)
         self.config.from_pyfile( 'config/base_setting.py' )
-        if "ops_config" in os.environ:
-            self.config.from_pyfile( 'config/%s_setting.py'%os.environ['ops_config'] )
+        # print(os.environ)
+        # if "ops_config" in os.environ:
+
+        self.config.from_pyfile( 'config/local_setting.py')
 
         db.init_app( self )
 
 db = SQLAlchemy()
-app = Application( __name__ ,template_folder = os.getcwd() + "/web/templates/")
+app = Application( __name__ ,template_folder = os.getcwd() + "/web/templates/",)
 manager = Manager( app )
 
 '''

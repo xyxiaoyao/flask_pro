@@ -142,7 +142,9 @@ var common_ops = {
     buildUrl:function( path ,params ){
         var url = "" + path;
         var _paramUrl = "";
+        console.log(Object)
         if(  params ){
+
             _paramUrl = Object.keys( params ).map( function( k ){
                 return [ encodeURIComponent( k ),encodeURIComponent( params[ k ] ) ].join("=");
             }).join("&");

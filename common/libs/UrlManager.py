@@ -12,7 +12,6 @@ class UrlManager(object):
     @staticmethod
     def buildStaticUrl(path):
         release_version = app.config.get( 'RELEASE_VERSION' )
-        print(release_version)
         ver = "%s"%( int( time.time() ) ) if not release_version else release_version
         path =  "/static" + path + "?ver=" + ver
         return UrlManager.buildUrl( path )
