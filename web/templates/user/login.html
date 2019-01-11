@@ -44,4 +44,19 @@
 {% block js %}
     <script src="{{ buildStaticUrl('/js/user/login.js') }}"></script>
 {% endblock %}
+<div onclick="fns()">
+	sss
+</div>
+<script>
+	function fns(){
+		$.ajax({
+			url:" http://0.0.0.0:8999/api",
+			type:"get",
+			dataType:"json",
+			success:function(res){
+				alert(res)
+			}
+		})
+	}
+</script>
 
