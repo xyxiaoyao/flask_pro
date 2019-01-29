@@ -3,6 +3,7 @@ from application import app
 
 '''
 统一拦截处理和统一错误处理
+
 '''
 from web.interceptors.AuthInterceptor import  *
 # from web.interceptors.ApiAuthInterceptor import  *
