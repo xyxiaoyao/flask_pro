@@ -1,19 +1,6 @@
 {% extends "common/layout_main.html" %}
 {% block content %}
-<div class="row  border-bottom">
-    <div class="col-lg-12">
-        <div class="tab_title">
-            <ul class="nav nav-pills">
-                <li class="current">
-                    <a href="{{ buildUrl('/food/index') }}">美食列表</a>
-                </li>
-                <li>
-                    <a href="{{ buildUrl('/food/cat') }}">分类列表</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
+{% include 'common/tab_food.html' %}
 <style type="text/css">
     .wrap_info img {
         width: 70%;
@@ -33,10 +20,10 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <p class="m-t">美食名：小鸡炖蘑菇</p>
-                <p>售价：45.00</p>
-                <p>库存总量：88</p>
-                <p>图书标签：好吃</p>
+                <p class="m-t">美食名：{{ info.name }}</p>
+                <p>售价：{{ info.price }}</p>
+                <p>库存总量：{{ info.stock }}</p>
+                <p>图书标签：{{ info.tags }}</p>
                 <p>封面图：<img src="{{ buildStaticUrl('/images/common/logo.png') }}" style="width: 50px;height: 50px;"></p>
                 <p>描述：</p>
                 <p>小鸡炖蘑菇~~~~</p>
@@ -164,3 +151,4 @@
     </div>
 </div>
 {% endblock %}
+

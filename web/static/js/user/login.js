@@ -46,3 +46,9 @@ var user_login_ops = {
 $(document).ready( function(){
     user_login_ops.init();
 } );
+$('body').keydown(function(e){
+   var curKey = e.which;
+   if(curKey == 13){
+       $(".login_wrap .do-login").click()
+   }
+});
