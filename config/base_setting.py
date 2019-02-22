@@ -21,7 +21,7 @@ API_IGNORE_URLS = [
     "^/api"
 ]
 
-PAGE_SIZE = 1
+PAGE_SIZE = 10
 PAGE_DISPLAY = 10
 
 STATUS_MAPPING = {

@@ -14,12 +14,11 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select name="cat_id" class="form-control inline">
+                     <select name="cat_id" class="form-control inline">
                         <option value="0">请选择分类</option>
-{#                       {% for cat_key in cat_mapping %}#}
-{#                            <option value="{{ cat_key }}" {% if cat_key == cat_mapping['cat_id'] %} selected {% endif %}>{{ cat_mapping[cat_key] }}</option>#}
-{#                       {% endfor %}#}
-
+                        {% for tmp_key in cat_mapping %}
+                            <option value="{{ tmp_key }}" {% if tmp_key|string == search_con['cat_id']  %} selected {% endif %} >{{ cat_mapping[ tmp_key].name  }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">
@@ -59,7 +58,7 @@
                  {% for item in list %}
                      <tr>
                         <td>{{ item.name }}</td>
-                        <td>东北菜</td>
+                        <td>{{ cat_mapping[item.id].name }}</td>
                         <td>{{ item.price }}</td>
                         <td>{{ item.stock }}</td>
                         <td>{{ item.tags }}</td>
