@@ -6,7 +6,7 @@ from application import app
 
 '''
 from web.interceptors.AuthInterceptor import  *
-# from web.interceptors.ApiAuthInterceptor import  *
+from web.interceptors.ApiAuthInterceptor import  *
 from web.interceptors.ErrorInterceptor import  *
 
 '''
